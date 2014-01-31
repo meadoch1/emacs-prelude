@@ -95,5 +95,7 @@
 (setq gist-authenticate-function 'gist-basic-authentication)
 (global-set-key (kbd "<f8>") 'gist-region-or-buffer)
 
+(add-hook 'js-mode-hook 'flymake-jslint-load)
+(add-hook 'css-mode-hook 'flymake-css-load)
 
 (provide 'chris-custom)
