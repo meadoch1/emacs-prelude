@@ -95,7 +95,21 @@
 (setq gist-authenticate-function 'gist-basic-authentication)
 (global-set-key (kbd "<f8>") 'gist-region-or-buffer)
 
-(add-hook 'js-mode-hook 'flymake-jslint-load)
+;; flymake
+(add-hook 'js-mode-hook 'flymake-gjshint:load)
 (add-hook 'css-mode-hook 'flymake-css-load)
+(add-hook 'sass-mode-hook 'flymake-sass-load)
+(add-hook 'scss-mode-hook 'flymake-sass-load)
+
+(custom-set-faces
+ '(flymake-errline ((((class color)) (:underline "red"))))
+  '(flymake-warnline ((((class color)) (:underline "yellow")))))
+
+(defun my-flymake-show-next-error()
+  (interactive)
+  (flymake-goto-next-error)
+  (flymake-display-err-menu-for-current-line)
+  )
+(local-set-key "\C-c\C-v" 'my-flymake-show-next-error)
 
 (provide 'chris-custom)
